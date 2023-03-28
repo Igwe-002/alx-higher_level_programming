@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# 101-square.py
 """Define a class Square."""
 
 
@@ -27,6 +26,7 @@ class Square:
         elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
+
     @property
     def position(self):
         """Get/set the current position of the square."""
@@ -40,7 +40,6 @@ class Square:
                 not all(num >= 0 for num in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
-
     def area(self):
         """Return the current area of the square."""
         return (self.__size * self.__size)
