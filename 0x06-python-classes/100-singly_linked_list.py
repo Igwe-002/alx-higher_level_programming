@@ -1,77 +1,74 @@
-0 contributors
-76 lines (64 sloc)  2.16 KB
-
 #!/usr/bin/python3
-"""Define classes for a singly-linked list."""
+""" No Modules Imported """
 
 
 class Node:
-    """Represent a node in a singly-linked list."""
+    """ Singly linked list will be built base on this Node """
+    __data = 0
+    __next_node = None
 
-    def __init__(self, data, next_node=None):
-        """Initialize a new Node.
-        Args:
-            data (int): The data of the new Node.
-            next_node (Node): The next node of the new Node.
-        """
+    def __init__(self, data=0, next_node=None):
+        """ Initialize the node """
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
-        """Get/set the data of the Node."""
-        return (self.__data)
+        """ Return class __data value """
+        return self.__data
+
+    @property
+    def next_node(self):
+        """ Reurn class __next_node__ value """
+        return self.__next_node
 
     @data.setter
-    def data(self, value):
-        if not isinstance(value, int):
+    def data(self, data):
+        """ Set class __data value """
+        if type(data) != int:
             raise TypeError("data must be an integer")
-        self.__data = value
-@property
-    def next_node(self):
-        """Get/set the next_node of the Node."""
-        return (self.__next_node)
-
-    @next_node.setter
-    def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
+        self.__data = data
+@next_node.setter
+    def next_node(self, next_node):
+        """ Set class __next_node value """
+        if type(next_node) is not Node and next_node is not None:
             raise TypeError("next_node must be a Node object")
-        self.__next_node = value
+        self.__next_node = next_node
 
 
 class SinglyLinkedList:
-    """Represent a singly-linked list."""
+    """ A Singly Linked list """
+    __head = None
 
     def __init__(self):
-        """Initialize a new SinglyLinkedList."""
+        """ Initialize class varaibles """
         self.__head = None
 
     def sorted_insert(self, value):
-        """Insert a new Node to the SinglyLinkedList.
-        The node is inserted into the list at the correct
-        ordered numerical position.
-        Args:
-            value (Node): The new Node to insert.
-        """
-        new = Node(value)
+        """ Sort and add the new node at the appropriate place """
         if self.__head is None:
-            new.next_node = None
+            self.__head = Node(value, None)
+            return
+
+        temp = self.__head
+        hold = None
+        while temp and value > temp.data:
+            hold = temp
+            temp = temp.next_node
+
+        if hold is None:
+            new = Node(value, temp)
             self.__head = new
-        elif self.__head.data > value:
-            new.next_node = self.__head
-            self.__head = new
-        else:
-            tmp = self.__head
-            while (tmp.next_node is not None and
-                    tmp.next_node.data < value):
-                tmp = tmp.next_node
-            new.next_node = tmp.next_node
-            tmp.next_node = new
-def __str__(self):
-        """Define the print() representation of a SinglyLinkedList."""
-        values = []
-        tmp = self.__head
-        while tmp is not None:
-            values.append(str(tmp.data))
-            tmp = tmp.next_node
-        return ('\n'.join(values))
+            return
+
+        new = Node(value, temp)
+        hold.next_node = new
+def __repr__(self):
+        """ Serve as a string """
+        temp = self.__head
+        while temp and temp.next_node:
+            print(temp.data)
+            temp = temp.next_node
+        if temp:
+            print(temp.data, end="")
+        return ""
