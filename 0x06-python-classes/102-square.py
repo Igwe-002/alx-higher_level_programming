@@ -1,52 +1,54 @@
 #!/usr/bin/python3
-""" No Modules Imported """
+# 102-square.py
+"""Define a class Square."""
 
 
 class Square:
-    """ Anothe Square class with mode advance verification """
-    __size = 0
+    """Represent a square."""
 
     def __init__(self, size=0):
-        """ Initial the class variables """
+        """Initialize a new square.
+        Args:
+            size (int): The size of the new square.
+        """
         self.size = size
 
     @property
     def size(self):
-        """ Serve as a getter to return back the class size """
-        return self.__size
-
-    @size.setter
-    def size(self, size=0):
-        """ Set the size of the square to a new value """
-        if type(size) != int:
+        """Get/set the current size of the square."""
+        return (self.__size)
+@size.setter
+    def size(self, value):
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if size < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = size
+        self.__size = value
 
     def area(self):
-        """ Return the area of the square """
-        return self.size * self.size
+        """Return the current area of the square."""
+        return (self.__size * self.__size)
 
     def __eq__(self, other):
-        """ Check the equality of two instances """
-        return self.size == other.size
-def __lt__(self, other):
-        """ Check less than between two instances """
-        return self.size < other.size
-
-    def __gt__(self, other):
-        """ Check greaer than between two instances """
-        return self.size > other.size
-
-    def __le__(self, other):
-        """ Check less than or equal to between two instances """
-        return self.size <= other.size
-
-    def __ge__(self, other):
-        """ Check greater than or equal to between two instances """
-        return self.size >= other.size
+        """Define the == comparision to a Square."""
+        return self.area() == other.area()
 
     def __ne__(self, other):
-        """ Check not equal to between two instances """
-        return self.size != other.size
+        """Define the != comparison to a Square."""
+        return self.area() != other.area()
+
+    def __lt__(self, other):
+        """Define the < comparison to a Square."""
+        return self.area() < other.area()
+
+    def __le__(self, other):
+        """Define the <= comparison to a Square."""
+        return self.area() <= other.area()
+
+    def __gt__(self, other):
+        """Define the > comparison to a Square."""
+        return self.area() > other.area()
+
+    def __ge__(self, other):
+        """Define the >= compmarison to a Square."""
+        return self.area() >= other.area()
